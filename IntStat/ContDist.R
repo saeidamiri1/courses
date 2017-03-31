@@ -84,3 +84,31 @@ plotunif<-function(minimum, maximum, lb, ub){
   axis(1, pos=0)
 }
 }
+
+  
+ plotalpha <- function(CENTER){
+ from = -5; to = 5; n = 1000
+ alpha<-1-CENTER
+  alt.alpha <-alpha/2
+  crit.upper <- qnorm(p = alt.alpha, lower.tail = FALSE) 
+  crit.lower <- qnorm(p = alt.alpha, lower.tail = TRUE) 
+  cord.x1 <- c(from, seq(from = from, to = crit.lower, 
+                         length.out = 100), crit.lower) 
+  cord.y1 <- c(0, dnorm(x = seq(from = from, to = crit.lower, 
+                                 length.out = 100),), 0) 
+  cord.x2 <- c(crit.upper, seq(from = crit.upper, to = to, 
+                               length.out = 100), to) 
+  cord.y2 <- c(0, dnorm(x = seq(from = crit.upper, to = to, 
+                                 length.out = 100),), 0) 
+  curve(dnorm(x), from = from, to = to, 
+        n = n, col = "black", lty = 1, lwd = 2, 
+        ylab = "Density", xlab = "Values") 
+
+    polygon(x = cord.x1, y = cord.y1, col = 'red') 
+
+    polygon(x = cord.x2, y = cord.y2, col = "red") 
+    result <- paste("CENTER=",CENTER,",alpha=",alpha/2, ",d=",round(qnorm(p = alt.alpha, lower.tail = FALSE),digits = 3))
+    mtext(result,3)
+
+} 
+  
