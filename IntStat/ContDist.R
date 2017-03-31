@@ -85,8 +85,7 @@ plotunif<-function(minimum, maximum, lb, ub){
 }
 }
 
-  
- plotalpha <- function(CENTER){
+plotalpha <- function(CENTER){
  from = -5; to = 5; n = 1000
  alpha<-1-CENTER
   alt.alpha <-alpha/2
@@ -107,8 +106,7 @@ plotunif<-function(minimum, maximum, lb, ub){
     polygon(x = cord.x1, y = cord.y1, col = 'red') 
 
     polygon(x = cord.x2, y = cord.y2, col = "red") 
-    result <- paste("CENTER=",CENTER,",d=",round(qnorm(p = alt.alpha, lower.tail = FALSE),digits = 3))
+    result <- paste("CENTER=",CENTER, ",d=",round(qnorm(p = alt.alpha, lower.tail = FALSE),digits = 3))
     mtext(result,3)
 
 } 
-  
