@@ -45,7 +45,7 @@ plotunif<-function(minimum, maximum, lb, ub){
     lb<-minimum
   sd<-(maximum-minimum)^2/12
   mean<-(maximum+minimum)/2
-  x <- seq(-4,4,length=1000)*sd + mean
+  x <- seq(minimum-1.5*sd,maximum+sd*1.5,length=1000)
   hx <- dunif(x,minimum,maximum)
   plot(x, hx, type="n", xlab="Values", ylab="", main="Uniform Distribution", axes=FALSE)
   i <- x >= lb & x <= ub
@@ -59,7 +59,7 @@ plotunif<-function(minimum, maximum, lb, ub){
   ub<-maximum
   sd<-(maximum-minimum)^2/12
   mean<-(maximum+minimum)/2
-  x <- seq(-4,4,length=1000)*sd + mean
+  x <- seq(minimum-1.5*sd,maximum+sd*1.5,length=1000)
   hx <- dunif(x,minimum,maximum)
   plot(x, hx, type="n", xlab="Values", ylab="", main="Uniform Distribution", axes=FALSE)
   i <- x >= lb & x <= ub
@@ -72,7 +72,7 @@ plotunif<-function(minimum, maximum, lb, ub){
 } else {
   sd<-(maximum-minimum)^2/12
   mean<-(maximum+minimum)/2
-  x <- seq(-4,4,length=1000)*sd + mean
+  x <- seq(minimum-1.5*sd,maximum+sd*1.5,length=1000)
   hx <- dunif(x,minimum,maximum)
   plot(x, hx, type="n", xlab="Values", ylab="", main="Uniform Distribution", axes=FALSE)
   i <- x >= lb & x <= ub
@@ -84,4 +84,3 @@ plotunif<-function(minimum, maximum, lb, ub){
   axis(1, pos=0)
 }
 }
-  
