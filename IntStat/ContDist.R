@@ -1,7 +1,7 @@
 plotnorm<-function(mean, sd, lb, ub){
   x <- seq(-4,4,length=100)*sd + mean
   hx <- dnorm(x,mean,sd)
-  plot(x, hx, type="n", xlab="IQ Values", ylab="", main="Normal Distribution", axes=FALSE)
+  plot(x, hx, type="n", xlab="X", ylab="", main="Normal Distribution", axes=FALSE)
   i <- x >= lb & x <= ub
   lines(x, hx)
   polygon(c(lb,x[i],ub), c(0,hx[i],0), col="red") 
