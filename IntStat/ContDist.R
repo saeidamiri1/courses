@@ -110,3 +110,35 @@ plotalpha <- function(CENTER){
     mtext(result,3)
 
 } 
+
+  
+  
+  p.valuemean<-function(X=NA,mean=NA,mu0=0,sd=NA,n=NA, alternative = c("two.sided", "less", "greater")){
+ 
+  if(!is.na(mean)==TRUE){
+    z0<-(mean-mu0)/(sd/n^.5)
+    if(alternative=="less"){
+      p.value<-pnorm(z0)
+    } else if(alternative=="greater"){
+      p.value<-1-pnorm(z0)
+    }else{
+      p.value<-2*min(pnorm(z0),pnorm(z0))
+    }
+  }
+  
+  
+   if((!is.na(sd)==TRUE)&(!is.na(mean)==FALSE)){
+    z0<-(mean(X)-mu0)/(sd/length(X)^.5)
+    if(alternative=="less"){
+      p.value<-pnorm(z0)
+    } else if(alternative=="greater"){
+      p.value<-1-pnorm(z0)
+    }else{
+      p.value<-2*min(pnorm(z0),pnorm(z0))
+    }
+  }
+    if((is.na(sd)==TRUE)&(!is.na(mean)==FALSE)){
+      p.value<-t.test(X,mu=mu0,alternative=alternative)$p.value
+  }
+  p.value
+}
