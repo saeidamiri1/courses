@@ -168,9 +168,41 @@ plotalpha <- function(CENTER){
       p.value<-2*min(pnorm(z0),1-pnorm(z0))
       a1<-paste("\n The Rejection Area is |Z|> Z",alpha/2,sep="")
       a2<-paste(" \n Z=",round(z0,4)) 
-      a3<-paste("\n Z",alpha,sep="","=",round(-qnorm(alpha/2),4))
+      a3<-paste("\n Z",alpha/2,sep="","=",round(-qnorm(alpha/2),4))
       a4<-paste("\n pvalue is",round(p.value,5)) 
       cat(a0,a1,a2,a3,a4)
     }
   }
 }
+
+
+TestmeanT<-function(mean=NA,mu0=NA,sd=NA,n=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+  a0<-paste("The alpha you chose is", alpha)
+  if(!is.na(mean)==TRUE){
+    z0<-(mean-mu0)/(sd/n^.5)
+    if(alternative=="less"){
+      p.value<-pt(z0,n-1)
+      a1<-paste("\n The Rejection Area is T< -t",alpha,sep="")
+      a2<-paste(" \n T=",round(z0,4))
+      a3<-paste("\nt",alpha,sep="","=",round(-qt(alpha, n-1),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else if(alternative=="greater"){
+      p.value<-1-pt(z0, n-1)
+      a1<-paste("\n The Rejection Area is T> t",alpha,sep="")
+      a2<-paste(" \n T=",round(z0,4)) 
+      a3<-paste("\n t",alpha,sep="","=",round(-qt(alpha, n-1),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }else{
+      p.value<-2*min(pnorm(z0),1-pnorm(z0))
+      a1<-paste("\n The Rejection Area is |T|> t",alpha/2,sep="")
+      a2<-paste(" \n T=",round(z0,4)) 
+      a3<-paste("\n t",alpha/2,sep="","=",round(-qt(alpha/2,n-1),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }
+  }
+}
+
+
