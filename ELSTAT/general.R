@@ -1,3 +1,13 @@
+percent<-function(x,p){
+  n<-length(x)
+  xs<-sort(x)
+  r<-n*p
+  ab<-n*p-floor(n*p)
+  if(ab==0) {return((xs[r]+xs[r+1])/2)}
+  else {xs[r+1]}
+}
+
+
 FreqTable<-function(obs, nclass ,delta=.1){
   nclass0<-(nclass+1)
   range0<-seq(min(obs)-delta, max(obs)+delta,length=nclass0)
