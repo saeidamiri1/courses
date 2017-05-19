@@ -1,16 +1,16 @@
-FreqTable<-function(obs, nclass ,delta=.05){
-  r0<-(max(obs)-min(obs))/(nclass)
-range0<-seq(min(obs)-delta, max(obs)+delta,r0)
-l0<- -length(range0)
-low0<-range0[l0]
-high0<-range0[-1]
-
-factor0 <- factor(cut(obs, breaks=range0))
-xout <- data.frame(table(factor0),ClassMid=(high0+low0)/2)
-
-xout2 <<- data.frame(xout$factor0,xout$ClassMid,FreQ=xout$Freq,cumFreq = cumsum(xout$Freq), Relative = prop.table(xout$Freq),cumRel=cumsum(prop.table(xout$Freq)))
-return(xout2)
+FreqTable<-function(obs, nclass ,delta=.1){
+  range0<-seq(min(obs)-delta, max(obs)+delta,length=nclass)
+  l0<- -length(range0)
+  low0<-range0[l0]
+  high0<-range0[-1]
+  
+  factor0 <- factor(cut(obs, breaks=range0))
+  xout <- data.frame(table(factor0),ClassMid=(high0+low0)/2)
+  
+  xout2 <- data.frame(xout$factor0,xout$ClassMid,FreQ=xout$Freq,cumFreq = cumsum(xout$Freq), Relative = prop.table(xout$Freq),cumRel=cumsum(prop.table(xout$Freq)))
+  return(xout2)
 }
+
 
 
 plotnorm<-function(mean, sd, lb, ub){
