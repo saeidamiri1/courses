@@ -26,8 +26,7 @@ FreqTable<-function(obs, nclass ,delta=.1){
 
 plotnorm<-function(mean, sd, lb, ub){
 if(is.na(lb)) {
-  lb<-mean-5*sd
-  
+  lb<-mean-5*sd  
   x <- seq(-4,4,length=100)*sd + mean
   hx <- dnorm(x,mean,sd)
   plot(x, hx, type="n", xlab=" Values", ylab="", main="Normal Distribution", axes=FALSE)
@@ -35,7 +34,7 @@ if(is.na(lb)) {
   lines(x, hx)
   polygon(c(lb,x[i],ub), c(0,hx[i],0), col="red") 
   area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-  result <- paste("P(X<",ub,")=",signif(area, digits=3))
+  result <- paste("P(X<",ub,")=",signif(area, digits=4))
   mtext(result,3)
   axis(1, pos=0)
 } else if(is.na(ub)){
@@ -47,7 +46,7 @@ if(is.na(lb)) {
   lines(x, hx)
   polygon(c(lb,x[i],ub), c(0,hx[i],0), col="red") 
   area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-  result <- paste("P(",lb,"< X) =",signif(area, digits=3))
+  result <- paste("P(",lb,"< X) =",signif(area, digits=4))
   mtext(result,3)
   axis(1, pos=0)
   }else{
@@ -58,7 +57,7 @@ if(is.na(lb)) {
     lines(x, hx)
     polygon(c(lb,x[i],ub), c(0,hx[i],0), col="red") 
     area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-    result <- paste("P(",lb,"< X<", ub,") =",signif(area, digits=3))
+    result <- paste("P(",lb,"< X<", ub,") =",signif(area, digits=4))
     mtext(result,3)
     axis(1, pos=0)
   }
