@@ -1,3 +1,5 @@
+
+varP<-function(x)  mean((x-mean(x))^2)
 percent<-function(x,p){
   n<-length(x)
   xs<-sort(x)
