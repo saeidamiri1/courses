@@ -234,3 +234,32 @@ TestmeanT<-function(mean=NA,mu0=NA,sd=NA,n=NA,alpha=0.05, alternative = c("two.s
 }
 
 
+
+Testprop<-function(phat=NA,p0=NA,n=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+  a0<-paste("The alpha you chose is", alpha)
+  if(!is.na(mean)==TRUE){
+    z0<-(phat-p0)/(phat*(1-phat)/n)^.5
+    if(alternative=="less"){
+      p.value<-pnorm(z0)
+      a1<-paste("\n The Rejection Area is Z< -Z",alpha,sep="")
+      a2<-paste(" \n Z=",round(z0,4))
+      a3<-paste("\nZ",alpha,sep="","=",round(-qnorm(alpha),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else if(alternative=="greater"){
+      p.value<-1-pnorm(z0)
+      a1<-paste("\n The Rejection Area is Z> Z",alpha,sep="")
+      a2<-paste(" \n Z=",round(z0,4)) 
+      a3<-paste("\nZ",alpha,sep="","=",round(-qnorm(alpha),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }else{
+      p.value<-2*min(pnorm(z0),1-pnorm(z0))
+      a1<-paste("\n The Rejection Area is |Z|> Z",alpha/2,sep="")
+      a2<-paste(" \n Z=",round(z0,4)) 
+      a3<-paste("\n Z",alpha/2,sep="","=",round(-qnorm(alpha/2),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }
+  }
+}
