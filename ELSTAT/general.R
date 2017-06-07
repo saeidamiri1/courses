@@ -238,7 +238,7 @@ TestmeanT<-function(mean=NA,mu0=NA,sd=NA,n=NA,alpha=0.05, alternative = c("two.s
 Testprop<-function(phat=NA,p0=NA,n=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
   a0<-paste("The alpha you chose is", alpha)
   if(!is.na(phat)==TRUE){
-    z0<-(phat-p0)/(phat*(1-phat)/n)^.5
+    z0<-(phat-p0)/(p0*(1-p0)/n)^.5
     if(alternative=="less"){
       p.value<-pnorm(z0)
       a1<-paste("\n The Rejection Area is Z< -Z",alpha,sep="")
