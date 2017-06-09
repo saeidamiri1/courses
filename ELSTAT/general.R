@@ -331,3 +331,69 @@ Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,n1=NA,n2=NA,alpha=0.05, alt
 
 
 
+
+
+
+Test2meanZ<-function(mean1=NA,mean2=NA,sigma1=NA,sigma2=NA,Dis=NA,n1=NA,n2,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+  a0<-paste("The alpha you chose is", alpha)
+  if((!is.na(mean1)&!is.na(mean2))==TRUE){
+    z0<-(mean1-mean2-Dis)/(sigma1^2/n1+sigma2^2/n2)^.5
+    if(alternative=="less"){
+      p.value<-pnorm(z0)
+      a1<-paste("\n The Rejection Area is Z< -Z",alpha,sep="")
+      a2<-paste(" \n Z=",round(z0,4))
+      a3<-paste("\nZ",alpha,sep="","=",round(-qnorm(alpha),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else if(alternative=="greater"){
+      p.value<-1-pnorm(z0)
+      a1<-paste("\n The Rejection Area is Z> Z",alpha,sep="")
+      a2<-paste(" \n Z=",round(z0,4)) 
+      a3<-paste("\nZ",alpha,sep="","=",round(-qnorm(alpha),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }else{
+      p.value<-2*min(pnorm(z0),1-pnorm(z0))
+      a1<-paste("\n The Rejection Area is |Z|> Z",alpha/2,sep="")
+      a2<-paste(" \n Z=",round(z0,4)) 
+      a3<-paste("\n Z",alpha/2,sep="","=",round(-qnorm(alpha/2),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }
+  }
+}
+
+
+
+
+Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=NA,n1=NA,n2=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+  a0<-paste("The alpha you chose is", alpha)
+  n<-min(n1,n2)
+  if((!is.na(mean1)&!is.na(mean2))==TRUE){
+    z0<-(mean1-mean2-Dis)/(sd1^2/n1+sd2^2/n2)^.5
+    if(alternative=="less"){
+      p.value<-pt(z0,n-1)
+      a1<-paste("\n The Rejection Area is T< -t",alpha,sep="")
+      a2<-paste(" \n T=",round(z0,4))
+      a3<-paste("\nt",alpha,sep="","=",round(-qt(alpha, n-1),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else if(alternative=="greater"){
+      p.value<-1-pt(z0, n-1)
+      a1<-paste("\n The Rejection Area is T> t",alpha,sep="")
+      a2<-paste(" \n T=",round(z0,4)) 
+      a3<-paste("\n t",alpha,sep="","=",round(-qt(alpha, n-1),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }else{
+      p.value<-2*min(pt(z0,n-1),1-pt(z0,n-1))
+      a1<-paste("\n The Rejection Area is |T|> t",alpha/2,sep="")
+      a2<-paste(" \n T=",round(z0,4)) 
+      a3<-paste("\n t",alpha/2,sep="","=",round(-qt(alpha/2,n-1),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }
+  }
+}
+
+
