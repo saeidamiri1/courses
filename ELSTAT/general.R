@@ -334,7 +334,7 @@ Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,n1=NA,n2=NA,alpha=0.05, alt
 
 
 
-Test2meanZ<-function(mean1=NA,mean2=NA,sigma1=NA,sigma2=NA,Dis=NA,n1=NA,n2,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+Test2meanZ<-function(mean1=NA,mean2=NA,sigma1=NA,sigma2=NA,Dis=0,n1=NA,n2,alpha=0.05, alternative = c("two.sided", "less", "greater")){
   a0<-paste("The alpha you chose is", alpha)
   if((!is.na(mean1)&!is.na(mean2))==TRUE){
     z0<-(mean1-mean2-Dis)/(sigma1^2/n1+sigma2^2/n2)^.5
@@ -366,7 +366,7 @@ Test2meanZ<-function(mean1=NA,mean2=NA,sigma1=NA,sigma2=NA,Dis=NA,n1=NA,n2,alpha
 
 
 
-Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=NA,n1=NA,n2=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=0,n1=NA,n2=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
   a0<-paste("The alpha you chose is", alpha)
   n<-min(n1,n2)
   if((!is.na(mean1)&!is.na(mean2))==TRUE){
@@ -395,5 +395,4 @@ Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=NA,n1=NA,n2=NA,alpha=0.
     }
   }
 }
-
 
