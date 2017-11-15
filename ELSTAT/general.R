@@ -396,3 +396,38 @@ Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=0,n1=NA,n2=NA,alpha=0.0
   }
 }
 
+
+
+
+
+Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=0,n1=NA,n2=NA,alpha=0.05, alternative = c("two.sided", "less", "greater")){
+  a0<-paste("The alpha you chose is", alpha)
+  df0<-(sd1^2/n1+sd2^2/n2)^2/((sd1^2/n1)^2/(n1-1)+(sd2^2/n2)^2/(n2-1))
+  if((!is.na(mean1)&!is.na(mean2))==TRUE){
+    z0<-(mean1-mean2-Dis)/(sd1^2/n1+sd2^2/n2)^.5
+    if(alternative=="less"){
+      p.value<-pt(z0,df0)
+      a1<-paste("\n The Rejection Area is T< -t",alpha,sep="")
+      a2<-paste(" \n T=",round(z0,4))
+      a3<-paste("\nt",alpha,sep="","=",round(-qt(alpha, df0),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else if(alternative=="greater"){
+      p.value<-1-pt(z0, df0)
+      a1<-paste("\n The Rejection Area is T> t",alpha,sep="")
+      a2<-paste(" \n T=",round(z0,4)) 
+      a3<-paste("\n t",alpha,sep="","=",round(-qt(alpha, df0),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else{
+      p.value<-2*min(pt(z0,df0),1-pt(z0,df0))
+      a1<-paste("\n The Rejection Area is |T|> t",alpha/2,sep="")
+      a2<-paste(" \n T=",round(z0,4)) 
+      a3<-paste("\n t",alpha/2,sep="","=",round(-qt(alpha/2,df0),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }
+  }
+}
+
+
