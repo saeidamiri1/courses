@@ -431,3 +431,40 @@ Test2meanT<-function(mean1=NA,mean2=NA,sd1=NA,sd2=NA,Dis=0,n1=NA,n2=NA,alpha=0.0
 }
 
 
+
+
+
+
+
+
+Test2prop<-function(phat1=NA,phat2=NA,n1=NA,n2=NA,alpha=0.05,Dis=0, alternative = c("two.sided", "less", "greater")){
+  p0<-(phat1*n1+phat2*n2)/(n1+n2)
+  a0<-paste("The alpha you chose is", alpha)
+  if((!is.na(phat1)&!is.na(phat2))==TRUE){
+    z0<-(phat1-phat2-Dis)/(p0*(1-p0)*(1/n1+1/n2))^.5
+    if(alternative=="less"){
+      p.value<-pnorm(z0)
+      a1<-paste("\n The Rejection Area is Z< -Z",alpha,sep="")
+      a2<-paste(" \n Z=",round(z0,4))
+      a3<-paste("\nZ",alpha,sep="","=",round(-qnorm(alpha),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    } else if(alternative=="greater"){
+      p.value<-1-pnorm(z0)
+      a1<-paste("\n The Rejection Area is Z> Z",alpha,sep="")
+      a2<-paste(" \n Z=",round(z0,4)) 
+      a3<-paste("\nZ",alpha,sep="","=",round(-qnorm(alpha),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }else{
+      p.value<-2*min(pnorm(z0),1-pnorm(z0))
+      a1<-paste("\n The Rejection Area is |Z|> Z",alpha/2,sep="")
+      a2<-paste(" \n Z=",round(z0,4)) 
+      a3<-paste("\n Z",alpha/2,sep="","=",round(-qnorm(alpha/2),4))
+      a4<-paste("\n pvalue is",round(p.value,5)) 
+      cat(a0,a1,a2,a3,a4)
+    }
+  }
+}
+
+
